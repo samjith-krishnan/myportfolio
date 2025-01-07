@@ -476,6 +476,9 @@ h2{
   
   /* Responsive Design */
   @media (min-width: 768px) {
+    body{
+        overflow-y: hidden;
+    }
     .project {
       display: inline-block;
       width: 45%;
@@ -485,6 +488,9 @@ h2{
   }
   
   @media (min-width: 1024px) {
+    body{
+        overflow-y: hidden;
+    }
     .project {
       width: 30%;
       margin: 1.66%;
@@ -496,6 +502,9 @@ h2{
 
 
 @media (max-width: 768px) {
+    body{
+        overflow-y: hidden;
+    }
     .header-part h2 {
         font-size: 1.5rem;
     }
@@ -524,6 +533,9 @@ h2{
 }
 
 @media (max-width: 480px) {
+    body{
+        overflow-y: hidden;
+    }
     .tabs-container a {
         font-size: 0.8rem;
     }
