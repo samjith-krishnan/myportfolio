@@ -11,6 +11,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -19,7 +20,9 @@ body {
     
     
 }
-
+#about-sec{
+    overflow: hidden;
+}
 .custom-cursor {
     padding: 1px;
     position: fixed; 
@@ -179,6 +182,7 @@ body {
 .skill-section {
     margin-top: 10%;
     padding: 2rem 1rem;
+    overflow: hidden;
     
    
   
@@ -332,7 +336,7 @@ h2{
 }
 
 /* Container for the paragraph */
-.about-sec p {
+.-sec p {
     line-height: 1.6;
     display: block;
     
@@ -387,6 +391,9 @@ h2{
     font-weight: bold;
     font-size: 50px;
 }
+#education-certificates{
+    overflow: hidden;
+}
 
 .education-card, .certificate-card {
     background-color: #ffffff;
@@ -407,6 +414,7 @@ h2{
 .footer {
     background-color: #080a0d;
     color: #ffffff;
+    overflow: hidden;
 }
 
 .footer h5 {
@@ -437,6 +445,7 @@ h2{
 #projects {
     padding: 50px;
     background-color: #f8f9fa;
+    overflow: hidden;
   }
   
   .project {
