@@ -118,6 +118,7 @@ body {
 
 
 #header {
+    overflow: hidden;
     background-color: #1E201E;
     height: 65vh;
     display: flex;
@@ -475,7 +476,19 @@ h2{
   }
   
   /* Responsive Design */
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
+
+    .diagonal-div{
+        width: 110vw;
+    }
+    
+    .diagonal-div2{
+        width: 110vw;
+    }
+    .horizondal-div{
+        width: 110vw;
+       
+    }
     body{
         overflow-x: hidden;
     }
@@ -487,7 +500,7 @@ h2{
     }
   }
   
-  @media (min-width: 1024px) {
+  @media (max-width: 1024px) {
     body{
         overflow-x: hidden;
     }
