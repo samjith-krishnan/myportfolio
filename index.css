@@ -484,8 +484,18 @@ h2{
     color: #007bff;
   }
   
+  
   /* Responsive Design */
   @media (max-width: 768px) {
+    .header-part p{
+        font-size: 40px;
+    }
+    
+    
+   
+    .custom-cursor {
+        display: none;
+    }
 
     .diagonal-div{
         width: 110vw;
@@ -509,7 +519,18 @@ h2{
     }
   }
   
-  @media (max-width: 1024px) {
+  @media (max-width: 1054px) {
+    .diagonal-div{
+        width: 110vw;
+    }
+    
+    .diagonal-div2{
+        width: 110vw;
+    }
+    .horizondal-div{
+        width: 110vw;
+       
+    }
     body{
         overflow-x: hidden;
     }
@@ -555,6 +576,10 @@ h2{
 }
 
 @media (max-width: 480px) {
+    .header-part p{
+        font-size: 40px;
+    }
+    
     body{
         overflow-x: hidden;
     }
@@ -596,6 +621,10 @@ h2{
 }
 
 @media (max-width: 768px) {
+    .header-part p{
+        font-size: 40px;
+    }
+    
     .skill-card {
         height: 120px;
     }
