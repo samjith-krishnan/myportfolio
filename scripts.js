@@ -1,81 +1,60 @@
-const nav = document.querySelector('.tabs-container');
-const offset = nav.offsetTop;
+document.addEventListener('DOMContentLoaded', () => {
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY >= offset) {
-        nav.classList.add('sticky');
-    } else {
-        nav.classList.remove('sticky');
-    }
-});
-
-
-document.addEventListener('scroll', () => {
-    const scrollingText = document.querySelector('.scrolling-text');
+    // --- INFINITE KINETIC SCROLL ENGINE ---
+    const marqueeStrip = document.querySelector('.strip-left');
+    
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
-        scrollingText.style.transform = `translateX(${scrollPosition * -0.4}px)`; // Adjust multiplier for speed
-    });
-});
-
-document.addEventListener('scroll', () => {
-    const scrollingText = document.querySelector('.scrolling-text1');
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        scrollingText.style.transform = `translateX(${scrollPosition * -0.4}px)`; // Adjust multiplier for speed
-    });
-});
-
-
-document.addEventListener('scroll', () => {
-    const scrollingText = document.querySelector('.text-horizondal');
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        scrollingText.style.transform = `translateX(${scrollPosition * 0.2}px)`; // Adjust multiplier for speed
-    });
-});
-
-
-
-
-
-const skillCards = document.querySelectorAll('.skill-card');
-
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          
-            setTimeout(() => {
-                entry.target.classList.add('show');
-            }, index * 200); 
-        }
-        else {
-            
-            entry.target.classList.remove('show');
+        if (marqueeStrip) {
+            // Smoothly tracks translation delta values without stuttering frames
+            marqueeStrip.style.transform = `translateX(${scrollPosition * -0.4}px)`;
         }
     });
-}, {
-    threshold: 1, 
-});
 
-skillCards.forEach(card => observer.observe(card));
+    // --- SKILLS OBSERVER MATRIX ENGINE ---
+    const skillCells = document.querySelectorAll('.skill-cell');
 
-
-const cursor = document.getElementById('cursor');
-    let mouseX = 0, mouseY = 0;
-
-    // Update mouse coordinates
-    document.addEventListener('mousemove', (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    });
-
-    // Smoothly move the custom cursor
-    const followCursor = () => {
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-      requestAnimationFrame(followCursor); // Smooth animation loop
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
     };
 
-    // Start animation loop
-    followCursor();
+    const cellsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+                // Creates clean cascading staggered animation delays on viewport entry
+                setTimeout(() => {
+                    entry.target.classList.add('show');
+                }, idx * 60);
+            } else {
+                entry.target.classList.remove('show');
+            }
+        });
+    }, observerOptions);
+
+    skillCells.forEach(cell => cellsObserver.observe(cell));
+
+    // --- LERP POWERED MAGNETIC OVERLAY MOUSE TRACKING ---
+    const cursorFrame = document.getElementById('cursor');
+    let targetX = 0, targetY = 0;
+    let computedX = 0, computedY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+
+    const runRenderLoop = () => {
+        // Linear interpolation math step calculates tracking drag vectors smoothly
+        computedX += (targetX - computedX) * 0.12;
+        computedY += (targetY - computedY) * 0.12;
+
+        if (cursorFrame) {
+            cursorFrame.style.transform = `translate3d(${computedX}px, ${computedY}px, 0)`;
+        }
+        requestAnimationFrame(runRenderLoop);
+    };
+
+    // Initialize pipeline loop execution
+    runRenderLoop();
+});
