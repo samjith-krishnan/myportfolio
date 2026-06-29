@@ -107,7 +107,8 @@
     }
     .hero-inner {
       position: relative; z-index: 2;
-      width: 100%;
+      max-width: 880px; width: 100%;
+      /* Ensure nothing inside can push past the viewport */
       overflow: hidden;
     }
 
@@ -122,14 +123,6 @@
     }
     @media (max-width: 480px) {
       .hero-tag { font-size: 0.65rem; padding: 0.3rem 0.75rem; letter-spacing: 0.04em; }
-      .hero-inner {
-      margin-bottom: 100px;
-    }
-    .hero-actions{
-      display:flex;
-      flex-direction: column;
-      margin-top: 100px;
-    }
     }
     .hero-tag-dot {
       width: 7px; height: 7px; border-radius: 50%;
@@ -140,6 +133,7 @@
 
     .hero-title {
       font-family: var(--display);
+      /* 9vw drives the size — at 360px that's 32px, safe for "KRISHNAN." */
       font-size: clamp(1rem, 9vw, 7.5rem);
       font-weight: 800; line-height: 0.95;
       letter-spacing: -0.02em; margin-bottom: 2rem;
@@ -249,45 +243,95 @@
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ── NAV DOCK ── */
+    /* ── NAV DOCK: desktop (icon + label) ── */
     #nav-dock {
-      position: fixed; bottom: 20px; left: 50%;
+      position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
       z-index: 6000;
       background: rgba(8,15,36,0.92);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(108,71,255,0.22);
       border-radius: 50px;
-      padding: 0.5rem 0.9rem;
-      display: flex; gap: 0;
+      padding: 0.5rem 1rem;
+      display: flex; gap: 0.1rem;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      max-width: calc(100vw - 2rem);
     }
     .dock-a {
       color: var(--slate); font-family: var(--mono); font-size: 0.78rem;
-      padding: 0.45rem 0.7rem; border-radius: 30px;
-      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.85rem; border-radius: 30px;
+      display: flex; align-items: center; gap: 0.45rem;
       transition: color 0.2s, background 0.2s;
-      white-space: nowrap;
+      white-space: nowrap; position: relative;
     }
-    .dock-a i { font-size: 0.88rem; }
+    .dock-a i { font-size: 0.9rem; flex-shrink: 0; }
     .dock-a span { display: inline; }
     .dock-a:hover, .dock-a.active {
       color: var(--white); background: rgba(108,71,255,0.28);
     }
 
-    @media (max-width: 480px) {
-      #nav-dock { padding: 0.5rem 0.6rem; bottom: 16px; }
-      .dock-a { padding: 0.5rem 0.65rem; gap: 0; }
+    /* ── NAV DOCK: mobile — icons only, tooltip on active ── */
+    @media (max-width: 560px) {
+      #nav-dock {
+        padding: 0.55rem 0.6rem;
+        gap: 0;
+        bottom: 20px;
+      }
+      .dock-a {
+        padding: 0.6rem 0.7rem;
+        gap: 0;
+      }
       .dock-a span { display: none; }
-      .dock-a i { font-size: 1rem; }
+      .dock-a i { font-size: 1.1rem; }
+
+      /* Label tooltip floating above icon */
+      .dock-a::before {
+        content: attr(data-label);
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        background: rgba(5,10,24,0.97);
+        border: 1px solid rgba(108,71,255,0.4);
+        color: var(--violet-l);
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.07em;
+        padding: 0.28rem 0.65rem;
+        border-radius: 6px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 10;
+      }
+      /* Triangle caret */
+      .dock-a::after {
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        border: 5px solid transparent;
+        border-top-color: rgba(108,71,255,0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 10;
+      }
+      /* Show tooltip on active nav item */
+      .dock-a.active::before,
+      .dock-a.active::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
     }
 
-
+    /* ── SECTIONS ── */
     .section {
       padding: clamp(3.5rem, 8vh, 9rem) clamp(1.2rem, 5vw, 6rem);
       position: relative;
     }
-    
+    /* Last section before footer needs nav clearance on mobile */
     @media (max-width: 640px) {
       #creative { padding-bottom: 7rem; }
     }
@@ -318,6 +362,7 @@
 
     .about-img-inner {
       position: relative; display: inline-block;
+      /* On mobile, stretch to fill column */
       width: 100%;
     }
     .about-img-inner img {
@@ -569,31 +614,37 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.32s; }
 
-
+    /* ── MOBILE POLISH ── */
     @media (max-width: 640px) {
-   
+      /* Hero title tighter on very small screens */
       .hero-title { margin-bottom: 1.5rem; }
 
+      /* About stats wrap nicely */
       .stats-strip { gap: 1.8rem; }
+
+      /* Section headings */
       .section-heading { margin-bottom: 0.75rem; }
 
+      /* Skills */
       .skill-group { margin-bottom: 2.2rem; }
       .pill { font-size: 0.79rem; padding: 0.45rem 0.9rem; }
 
+      /* Project card bg number scales down */
       .proj-bg-num { font-size: 5.5rem; right: 1rem; }
 
+      /* Timeline items */
       .tl-item { gap: 1rem; margin-bottom: 2rem; }
       .exp-col-title { margin-bottom: 1.5rem; }
 
-
+      /* Creative section */
       .creative-top { gap: 2rem; }
       .media-box { aspect-ratio: 3/2; }
 
-
+      /* Footer brand */
       .footer-brand { font-size: 1.35rem; }
     }
 
-  
+    /* Prevent any horizontal scroll caused by absolute/fixed elements */
     html, body { max-width: 100%; overflow-x: hidden; }
   </style>
 </head>
@@ -660,11 +711,11 @@
 
 <!-- ══ NAV ══ -->
 <nav id="nav-dock">
-  <a href="#hero"       class="dock-a active"><i class="fas fa-terminal"></i> Home</a>
-  <a href="#about"      class="dock-a"><i class="far fa-user"></i> About</a>
-  <a href="#skills"     class="dock-a"><i class="fas fa-cubes"></i> Skills</a>
-  <a href="#projects"   class="dock-a"><i class="fas fa-code-branch"></i> Work</a>
-  <a href="#footer"     class="dock-a"><i class="far fa-envelope"></i> Contact</a>
+  <a href="#hero"     class="dock-a active" data-label="HOME"><i class="fas fa-terminal"></i><span> Home</span></a>
+  <a href="#about"    class="dock-a"        data-label="ABOUT"><i class="far fa-user"></i><span> About</span></a>
+  <a href="#skills"   class="dock-a"        data-label="SKILLS"><i class="fas fa-cubes"></i><span> Skills</span></a>
+  <a href="#projects" class="dock-a"        data-label="WORK"><i class="fas fa-code-branch"></i><span> Work</span></a>
+  <a href="#footer"   class="dock-a"        data-label="CONTACT"><i class="far fa-envelope"></i><span> Contact</span></a>
 </nav>
 
 <main>
