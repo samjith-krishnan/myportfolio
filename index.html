@@ -38,7 +38,7 @@
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* ── CURSOR ── */
+  
     #cursor-ring {
       position: fixed; pointer-events: none; z-index: 9999;
       width: 36px; height: 36px;
@@ -63,7 +63,7 @@
       body { cursor: auto; }
     }
 
-    /* ── SCROLL BAR ── */
+  
     #scroll-bar {
       position: fixed; top: 0; left: 0; height: 2px;
       background: linear-gradient(90deg, var(--violet), var(--amber));
@@ -71,7 +71,7 @@
       transition: width 0.08s linear;
     }
 
-    /* ── NOISE ── */
+
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -79,17 +79,46 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
-    /* ── HERO ── */
+  
+    #hero-spacer {
+      position: relative;
+      height: 160svh;
+    }
     #hero {
-      min-height: 100svh;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      width: 100%;
+      height: 100svh;
       display: flex; align-items: center;
-      position: relative; overflow: hidden;
+      overflow: hidden;
       padding: clamp(4rem, 12vh, 6rem) clamp(1.2rem, 5vw, 6rem) clamp(5rem, 12vh, 8rem);
+      z-index: 1;
+      will-change: transform, opacity;
+    }
+    
+    #hero-inner-scale {
+      width: 100%; height: 100%;
+      display: flex; align-items: center;
+      will-change: transform, opacity;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #hero { position: relative; }
+      #hero-spacer { height: auto; }
     }
     .para-layer {
       position: absolute; inset: 0;
       pointer-events: none;
     }
+
+    #hero-3d {
+      position: absolute; inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    #hero-3d.visible { opacity: 1; }
+    #hero-3d canvas { display: block; width: 100% !important; height: 100% !important; }
     #layer-grid {
       background-image:
         linear-gradient(rgba(108,71,255,0.05) 1px, transparent 1px),
@@ -132,7 +161,7 @@
 
     .hero-title {
       font-family: var(--display);
-      /* 9vw drives the size — at 360px that's 32px, safe for "KRISHNAN." */
+      
       font-size: clamp(1rem, 9vw, 7.5rem);
       font-weight: 800; line-height: 0.95;
       letter-spacing: -0.02em; margin-bottom: 2rem;
@@ -220,12 +249,14 @@
     }
     @keyframes lineG { 0%,100%{width:18px;opacity:0.4} 50%{width:36px;opacity:0.8} }
 
-    /* ── MARQUEE ── */
     .marquee-wrap {
       overflow: hidden; padding: 1.1rem 0;
       border-top: 1px solid rgba(255,255,255,0.05);
       border-bottom: 1px solid rgba(255,255,255,0.05);
       background: var(--bg2);
+     
+      position: relative;
+      z-index: 10;
     }
     .marquee-track {
       display: flex; gap: 0;
@@ -241,8 +272,6 @@
     .marquee-item span { color: var(--violet-l); margin-right: 0.5rem; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* ── NAV DOCK ── */
-    /* ── NAV DOCK: desktop (icon + label) ── */
     #nav-dock {
       position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
@@ -268,7 +297,7 @@
       color: var(--white); background: rgba(108,71,255,0.28);
     }
 
-    /* ── NAV DOCK: mobile — icons only, tooltip on active ── */
+   
     @media (max-width: 560px) {
       #nav-dock {
         padding: 0.55rem 0.6rem;
@@ -282,7 +311,7 @@
       .dock-a span { display: none; }
       .dock-a i { font-size: 1.1rem; }
 
-      /* Label tooltip floating above icon */
+
       .dock-a::before {
         content: attr(data-label);
         position: absolute;
@@ -303,7 +332,7 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         z-index: 10;
       }
-      /* Triangle caret */
+   
       .dock-a::after {
         content: '';
         position: absolute;
@@ -317,7 +346,7 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         z-index: 10;
       }
-      /* Show tooltip on active nav item */
+      
       .dock-a.active::before,
       .dock-a.active::after {
         opacity: 1;
@@ -325,12 +354,12 @@
       }
     }
 
-    /* ── SECTIONS ── */
+  
     .section {
       padding: clamp(3.5rem, 8vh, 9rem) clamp(1.2rem, 5vw, 6rem);
       position: relative;
     }
-    /* Last section before footer needs nav clearance on mobile */
+  
     @media (max-width: 640px) {
       #creative { padding-bottom: 7rem; }
     }
@@ -361,7 +390,7 @@
 
     .about-img-inner {
       position: relative; display: inline-block;
-      /* On mobile, stretch to fill column */
+    
       width: 100%;
     }
     .about-img-inner img {
@@ -613,38 +642,72 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.32s; }
 
-    /* ── MOBILE POLISH ── */
     @media (max-width: 640px) {
-      /* Hero title tighter on very small screens */
+      
       .hero-title { margin-bottom: 1.5rem; }
 
-      /* About stats wrap nicely */
+   
       .stats-strip { gap: 1.8rem; }
 
-      /* Section headings */
       .section-heading { margin-bottom: 0.75rem; }
 
-      /* Skills */
+  
       .skill-group { margin-bottom: 2.2rem; }
       .pill { font-size: 0.79rem; padding: 0.45rem 0.9rem; }
 
-      /* Project card bg number scales down */
+     
       .proj-bg-num { font-size: 5.5rem; right: 1rem; }
 
-      /* Timeline items */
+
       .tl-item { gap: 1rem; margin-bottom: 2rem; }
       .exp-col-title { margin-bottom: 1.5rem; }
 
-      /* Creative section */
+ 
       .creative-top { gap: 2rem; }
       .media-box { aspect-ratio: 3/2; }
 
-      /* Footer brand */
       .footer-brand { font-size: 1.35rem; }
     }
 
-    /* Prevent any horizontal scroll caused by absolute/fixed elements */
+ 
     html, body { max-width: 100%; overflow-x: hidden; }
+
+  
+    #scene3d-wrap {
+      position: fixed;
+      top: 90px;
+      right: clamp(0.5rem, 2vw, 2rem);
+      width: 150px;
+      height: 150px;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #scene3d-wrap.visible { opacity: 1; transform: scale(1); }
+    #scene3d-wrap canvas { display: block; width: 100% !important; height: 100% !important; }
+
+    #scene3d-label {
+      position: absolute;
+      bottom: -1.6rem; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--slate-d);
+      white-space: nowrap;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      #scene3d-wrap { width: 110px; height: 110px; top: 78px; right: 0.6rem; }
+      #scene3d-label { font-size: 0.56rem; bottom: -1.3rem; }
+    }
+    @media (max-width: 560px) {
+     
+      #scene3d-wrap { width: 86px; height: 86px; top: 70px; right: 0.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -653,34 +716,43 @@
 <div id="cursor-dot"></div>
 <div id="scroll-bar"></div>
 
-<!-- ══ HERO ══ -->
-<section id="hero">
-  <div class="para-layer" id="layer-grid"></div>
-  <div class="para-layer" id="layer-orb1"></div>
-  <div class="para-layer" id="layer-orb2"></div>
+<div id="scene3d-wrap">
+  <div id="scene3d-label">SYS.RENDER</div>
+</div>
 
-  <div class="hero-inner">
-    <div class="hero-tag reveal">
-      <span class="hero-tag-dot"></span>
-      ACTIVE — Software Developer @ Thinkfotech
+
+<div id="hero-spacer">
+  <section id="hero">
+    <div id="hero-inner-scale">
+      <div id="hero-3d"></div>
+      <div class="para-layer" id="layer-grid"></div>
+      <div class="para-layer" id="layer-orb1"></div>
+      <div class="para-layer" id="layer-orb2"></div>
+
+      <div class="hero-inner">
+        <div class="hero-tag reveal">
+          <span class="hero-tag-dot"></span>
+          ACTIVE — Software Developer @ Thinkfotech
+        </div>
+        <h1 class="hero-title reveal reveal-d1">
+          <span class="line">SAMJITH</span>
+          <span class="line glitch" data-text="KRISHNAN.">KRISHNAN.</span>
+        </h1>
+        <p class="hero-sub reveal reveal-d2">
+          I engineer performant Python/Django backends and fluid React interfaces.
+          Systems that scale quietly — experiences that feel effortless.
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a href="#projects" class="btn-primary">View Work →</a>
+          <a href="#footer" class="btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span class="scroll-line"></span>scroll
+      </div>
     </div>
-    <h1 class="hero-title reveal reveal-d1">
-      <span class="line">SAMJITH</span>
-      <span class="line glitch" data-text="KRISHNAN.">KRISHNAN.</span>
-    </h1>
-    <p class="hero-sub reveal reveal-d2">
-      I engineer performant Python/Django backends and fluid React interfaces.
-      Systems that scale quietly — experiences that feel effortless.
-    </p>
-    <div class="hero-actions reveal reveal-d3">
-      <a href="#projects" class="btn-primary">View Work →</a>
-      <a href="#footer" class="btn-ghost">Get in Touch</a>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <span class="scroll-line"></span>scroll
-  </div>
-</section>
+  </section>
+</div>
 
 <!-- ══ MARQUEE ══ -->
 <div class="marquee-wrap">
@@ -717,7 +789,7 @@
   <a href="#footer"   class="dock-a"        data-label="CONTACT"><i class="far fa-envelope"></i><span> Contact</span></a>
 </nav>
 
-<main>
+<main style="position:relative; z-index:10; background:var(--bg2);">
 
 <!-- ══ ABOUT ══ -->
 <section class="section" id="about">
@@ -997,34 +1069,72 @@ window.addEventListener('scroll', () => {
   bar.style.width = (p*100)+'%';
 }, {passive:true});
 
-// ── PARALLAX HERO
+// ── PINNED HERO: pin-then-release scroll choreography ──
+const heroSpacer = document.getElementById('hero-spacer');
+const heroSection = document.getElementById('hero');
+const heroScaleWrap = document.getElementById('hero-inner-scale');
 const grid = document.getElementById('layer-grid');
 const orb1 = document.getElementById('layer-orb1');
 const orb2 = document.getElementById('layer-orb2');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  grid.style.transform  = `translateY(${y * 0.3}px)`;
-  orb1.style.transform  = `translateY(${y * 0.18}px)`;
-  orb2.style.transform  = `translateY(${y * 0.08}px)`;
-}, {passive:true});
 
-// Mouse parallax on hero
-document.getElementById('hero').addEventListener('mousemove', e => {
-  const cx = (e.clientX/innerWidth  - 0.5) * 18;
-  const cy = (e.clientY/innerHeight - 0.5) * 12;
-  orb1.style.transform = `translate(${cx*0.8}px, ${cy*0.8}px)`;
-  orb2.style.transform = `translate(${-cx*0.4}px, ${-cy*0.4}px)`;
-  grid.style.transform = `translate(${cx*0.15}px, ${cy*0.15}px)`;
-});
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── SCROLL REVEAL
+let mouseCX = 0, mouseCY = 0; // mouse-driven offsets, reused below
+
+function updateHeroPin() {
+  if (reduceMotion || !heroSpacer || !heroSection) return;
+
+  const rect = heroSpacer.getBoundingClientRect();
+  const spacerHeight = rect.height;
+  const viewportH = window.innerHeight;
+
+  const releaseDistance = spacerHeight - viewportH;
+
+  const scrolled = Math.min(Math.max(-rect.top, 0), releaseDistance);
+  const progress = releaseDistance > 0 ? scrolled / releaseDistance : 0; 
+
+  if (rect.top > 0) {
+
+    heroSection.style.transform = '';
+    heroSection.style.opacity = '1';
+  } else if (scrolled < releaseDistance) {
+
+    const scale = 1 + progress * 0.12;     
+    const opacity = 1 - progress * 1.0;     
+    heroScaleWrap.style.transform = `scale(${scale.toFixed(4)})`;
+    heroScaleWrap.style.opacity = Math.max(opacity, 0).toFixed(3);
+  } else {
+  
+    heroScaleWrap.style.transform = 'scale(1.12)';
+    heroScaleWrap.style.opacity = '0';
+  }
+
+  
+  const driftY = progress * 60;
+  grid.style.transform  = `translateY(${driftY * 0.5 + mouseCX*0.15}px)`;
+  orb1.style.transform  = `translateY(${driftY * 0.3}px) translate(${mouseCX*0.8}px, ${mouseCY*0.8}px)`;
+  orb2.style.transform  = `translateY(${driftY * 0.15}px) translate(${-mouseCX*0.4}px, ${-mouseCY*0.4}px)`;
+}
+
+window.addEventListener('scroll', updateHeroPin, { passive: true });
+window.addEventListener('resize', updateHeroPin);
+updateHeroPin();
+
+if (heroSection) {
+  heroSection.addEventListener('mousemove', e => {
+    mouseCX = (e.clientX/innerWidth  - 0.5) * 18;
+    mouseCY = (e.clientY/innerHeight - 0.5) * 12;
+  });
+}
+
+
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin:'0px 0px -40px 0px' });
 revealEls.forEach(el => io.observe(el));
 
-// Force-reveal hero immediately
+
 document.querySelectorAll('#hero .reveal').forEach(el => {
   setTimeout(() => el.classList.add('visible'), 50);
 });
@@ -1043,7 +1153,6 @@ const navObs = new IntersectionObserver(entries => {
 }, { threshold: 0.4 });
 sections.forEach(s => navObs.observe(s));
 
-// ── 3D TILT on project cards
 document.querySelectorAll('.proj-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -1054,7 +1163,7 @@ document.querySelectorAll('.proj-card').forEach(card => {
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
-// ── CURSOR EXPAND on interactive elements
+
 document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
     ring.style.width  = '56px';
@@ -1067,6 +1176,319 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     ring.style.borderColor = 'var(--violet-l)';
   });
 });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function() {
+  const wrap = document.getElementById('scene3d-wrap');
+  const label = document.getElementById('scene3d-label');
+  if (!wrap || typeof THREE === 'undefined') return;
+
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  wrap.insertBefore(renderer.domElement, label);
+
+  function resizeRenderer() {
+    const size = wrap.clientWidth || 150;
+    renderer.setSize(size, size, false);
+    camera.aspect = 1;
+    camera.updateProjectionMatrix();
+  }
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.set(0, 0, 6);
+
+  // Lighting
+  const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+  scene.add(ambient);
+  const point1 = new THREE.PointLight(0x6c47ff, 2.2, 20);
+  point1.position.set(3, 3, 4);
+  scene.add(point1);
+  const point2 = new THREE.PointLight(0xffb347, 1.4, 20);
+  point2.position.set(-3, -2, 3);
+  scene.add(point2);
+
+  function makeSymbolSprite(text, color) {
+    const c = document.createElement('canvas');
+    c.width = 128; c.height = 128;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, 128, 128);
+    ctx.font = '700 64px "Fira Code", monospace';
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 18;
+    ctx.fillText(text, 64, 70);
+    const tex = new THREE.CanvasTexture(c);
+    tex.minFilter = THREE.LinearFilter;
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+    const sprite = new THREE.Sprite(mat);
+    sprite.scale.set(1.1, 1.1, 1.1);
+    return sprite;
+  }
+
+  const symbolDefs = [
+    { text: '</>', color: '#9B7FFF' },
+    { text: '{ }', color: '#FFB347' },
+    { text: 'λ',   color: '#9B7FFF' },
+    { text: '#!',  color: '#FFB347' },
+    { text: '=>',  color: '#9B7FFF' },
+    { text: '01',  color: '#FFB347' },
+  ];
+
+  const group = new THREE.Group();
+  const symbols = symbolDefs.map(def => {
+    const s = makeSymbolSprite(def.text, def.color);
+    group.add(s);
+    return s;
+  });
+  scene.add(group);
+
+
+  const coreGeo = new THREE.IcosahedronGeometry(1.15, 0);
+  const coreMat = new THREE.MeshBasicMaterial({ color: 0x6c47ff, wireframe: true, transparent: true, opacity: 0.22 });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+  scene.add(core);
+
+
+  const layouts = {
+    hero: [
+      [1.6, 0.6, 0], [-1.5, 0.8, -0.5], [0.3, 1.6, 0.4],
+      [-0.6, -1.5, -0.3], [1.4, -1.0, 0.5], [-1.6, -0.4, 0.2]
+    ],
+    about: [
+      [0, 1.8, 0], [1.4, 0.9, 0.6], [1.4, -0.9, -0.6],
+      [0, -1.8, 0], [-1.4, -0.9, 0.6], [-1.4, 0.9, -0.6]
+    ],
+    skills: [
+      [-1.5, 1.5, 0], [1.5, 1.5, 0], [-1.5, -1.5, 0],
+      [1.5, -1.5, 0], [0, 0, 1.6], [0, 0, -1.6]
+    ],
+    projects: [
+      [-1.8, 0, 0], [-0.9, 0, 0.9], [0, 0, 1.2],
+      [0.9, 0, 0.9], [1.8, 0, 0], [0, 0, -1.2]
+    ], 
+    experience: [
+      [0, 1.9, 0], [0, 1.1, 0], [0, 0.3, 0],
+      [0, -0.5, 0], [0, -1.3, 0], [0, -2.1, 0]
+    ], 
+    creative: [
+      [1.3, 1.0, 0.8], [-1.3, 1.0, -0.8], [1.3, -1.0, -0.8],
+      [-1.3, -1.0, 0.8], [0, 1.7, -0.4], [0, -1.7, 0.4]
+    ], 
+    footer: [
+      [0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]
+    ]
+  };
+
+  const labels = {
+    hero: 'SYS.RENDER', about: 'IDENTITY.MAP', skills: 'STACK.GRID',
+    projects: 'BUILD.QUEUE', experience: 'LOG.TIMELINE', creative: 'CAPTURE.MODE',
+    footer: 'EOF'
+  };
+
+  let currentTargets = layouts.hero;
+  let currentSection = 'hero';
+
+  function setSection(id) {
+    if (!layouts[id] || id === currentSection) return;
+    currentSection = id;
+    currentTargets = layouts[id];
+    if (label) label.textContent = labels[id] || 'SYS.RENDER';
+  }
+
+  const watchIds = ['hero','about','skills','projects','experience','creative','footer'];
+  watchIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setSection(id); });
+    }, { threshold: 0.4 });
+    obs.observe(el);
+  });
+
+
+  const visIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) wrap.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  const heroEl = document.getElementById('hero');
+  if (heroEl) visIO.observe(heroEl);
+
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.01;
+
+    symbols.forEach((s, i) => {
+      const target = currentTargets[i] || [0,0,0];
+      s.position.x += (target[0] - s.position.x) * 0.06;
+      s.position.y += (target[1] - s.position.y) * 0.06;
+      s.position.z += (target[2] - s.position.z) * 0.06;
+      // gentle bob
+      s.position.y += Math.sin(t * 1.5 + i) * 0.003;
+    });
+
+    group.rotation.y += 0.0035;
+    group.rotation.x = Math.sin(t * 0.3) * 0.15;
+    core.rotation.y -= 0.002;
+    core.rotation.x += 0.0015;
+
+    renderer.render(scene, camera);
+  }
+
+  resizeRenderer();
+  animate();
+  window.addEventListener('resize', resizeRenderer);
+})();
+</script>
+
+
+<script>
+(function() {
+  const wrap = document.getElementById('hero-3d');
+  const heroSection = document.getElementById('hero');
+  if (!wrap || !heroSection || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  wrap.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.set(0, 0, 9);
+
+  function resizeRenderer() {
+    const w = heroSection.clientWidth;
+    const h = heroSection.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+  const pLight1 = new THREE.PointLight(0x6c47ff, 2.4, 30);
+  pLight1.position.set(6, 4, 6);
+  scene.add(pLight1);
+  const pLight2 = new THREE.PointLight(0xffb347, 1.6, 30);
+  pLight2.position.set(-6, -3, 5);
+  scene.add(pLight2);
+
+  function makeSymbolSprite(text, color, fontSize) {
+    const c = document.createElement('canvas');
+    c.width = 160; c.height = 160;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, 160, 160);
+    ctx.font = `700 ${fontSize}px "Fira Code", monospace`;
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 22;
+    ctx.fillText(text, 80, 88);
+    const tex = new THREE.CanvasTexture(c);
+    tex.minFilter = THREE.LinearFilter;
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, opacity: 0.85 });
+    return new THREE.Sprite(mat);
+  }
+
+  const symbolDefs = [
+    { text: '</>',  color: '#9B7FFF', size: 64 },
+    { text: '{ }',  color: '#FFB347', size: 60 },
+    { text: 'λ',    color: '#9B7FFF', size: 84 },
+    { text: '#!',   color: '#FFB347', size: 64 },
+    { text: '=>',   color: '#9B7FFF', size: 64 },
+    { text: '01',   color: '#FFB347', size: 64 },
+    { text: '( )',  color: '#9B7FFF', size: 60 },
+    { text: '::',   color: '#FFB347', size: 76 },
+    { text: '/>',   color: '#9B7FFF', size: 68 },
+    { text: '*',    color: '#FFB347', size: 90 },
+  ];
+
+  const group = new THREE.Group();
+  const symbols = symbolDefs.map((def, i) => {
+    const s = makeSymbolSprite(def.text, def.color, def.size);
+    const scale = 0.85 + Math.random() * 0.55;
+    s.scale.set(scale, scale, scale);
+
+    s.position.set(
+      (Math.random() - 0.5) * 14,
+      (Math.random() - 0.5) * 9,
+      (Math.random() - 0.5) * 6 - 2
+    );
+    s.userData.baseY = s.position.y;
+    s.userData.driftSpeed = 0.3 + Math.random() * 0.5;
+    s.userData.driftPhase = Math.random() * Math.PI * 2;
+    s.userData.rotSpeed = (Math.random() - 0.5) * 0.002;
+    group.add(s);
+    return s;
+  });
+  scene.add(group);
+
+  
+  const coreGeo = new THREE.IcosahedronGeometry(4.2, 1);
+  const coreMat = new THREE.MeshBasicMaterial({ color: 0x6c47ff, wireframe: true, transparent: true, opacity: 0.06 });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+  core.position.z = -3;
+  scene.add(core);
+
+
+  let scrollFrac = 0;
+  let mouseX = 0, mouseY = 0;
+
+  function updateScrollFrac() {
+    const rect = heroSection.getBoundingClientRect();
+    const total = rect.height + window.innerHeight;
+    const passed = window.innerHeight - rect.top;
+    scrollFrac = Math.min(Math.max(passed / total, 0), 1);
+  }
+
+  window.addEventListener('scroll', updateScrollFrac, { passive: true });
+  heroSection.addEventListener('mousemove', e => {
+    const r = heroSection.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width - 0.5;
+    mouseY = (e.clientY - r.top) / r.height - 0.5;
+  });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.012;
+
+    symbols.forEach(s => {
+      
+      s.position.y = s.userData.baseY + Math.sin(t * s.userData.driftSpeed + s.userData.driftPhase) * 0.4;
+      s.material.rotation += s.userData.rotSpeed;
+    });
+
+    group.position.y = scrollFrac * 4.5;
+    group.position.z = scrollFrac * -3;
+    wrap.style.opacity = Math.max(1 - scrollFrac * 1.4, 0);
+
+
+    group.rotation.y += ((mouseX * 0.4) - group.rotation.y) * 0.02;
+    group.rotation.x += ((-mouseY * 0.25) - group.rotation.x) * 0.02;
+
+    core.rotation.y += 0.0008;
+    core.rotation.x -= 0.0005;
+
+    renderer.render(scene, camera);
+  }
+
+  resizeRenderer();
+  animate();
+  window.addEventListener('resize', resizeRenderer);
+
+
+  requestAnimationFrame(() => wrap.classList.add('visible'));
+})();
 </script>
 </body>
 </html>
