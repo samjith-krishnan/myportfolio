@@ -38,7 +38,7 @@
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-  
+    
     #cursor-ring {
       position: fixed; pointer-events: none; z-index: 9999;
       width: 36px; height: 36px;
@@ -63,15 +63,14 @@
       body { cursor: auto; }
     }
 
-  
+ 
     #scroll-bar {
       position: fixed; top: 0; left: 0; height: 2px;
       background: linear-gradient(90deg, var(--violet), var(--amber));
       z-index: 8000; width: 0%;
       transition: width 0.08s linear;
     }
-
-
+ 
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -79,7 +78,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
-  
+    
     #hero-spacer {
       position: relative;
       height: 160svh;
@@ -91,15 +90,16 @@
       height: 100svh;
       display: flex; align-items: center;
       overflow: hidden;
-      padding: clamp(4rem, 12vh, 6rem) clamp(1.2rem, 5vw, 6rem) clamp(5rem, 12vh, 8rem);
+ 
       z-index: 1;
       will-change: transform, opacity;
     }
-    
+     
     #hero-inner-scale {
       width: 100%; height: 100%;
       display: flex; align-items: center;
       will-change: transform, opacity;
+      position: relative;
     }
     @media (prefers-reduced-motion: reduce) {
       #hero { position: relative; }
@@ -109,7 +109,7 @@
       position: absolute; inset: 0;
       pointer-events: none;
     }
-
+   
     #hero-3d {
       position: absolute; inset: 0;
       z-index: 1;
@@ -137,6 +137,8 @@
     .hero-inner {
       position: relative; z-index: 2;
       max-width: 70rem; width: 100%;
+      padding: clamp(4rem, 12vh, 6rem) clamp(1.2rem, 5vw, 6rem) clamp(5rem, 12vh, 8rem);
+     
       overflow: hidden;
     }
 
@@ -161,7 +163,7 @@
 
     .hero-title {
       font-family: var(--display);
-      
+     
       font-size: clamp(1rem, 9vw, 7.5rem);
       font-weight: 800; line-height: 0.95;
       letter-spacing: -0.02em; margin-bottom: 2rem;
@@ -249,12 +251,13 @@
     }
     @keyframes lineG { 0%,100%{width:18px;opacity:0.4} 50%{width:36px;opacity:0.8} }
 
+ 
     .marquee-wrap {
       overflow: hidden; padding: 1.1rem 0;
       border-top: 1px solid rgba(255,255,255,0.05);
       border-bottom: 1px solid rgba(255,255,255,0.05);
       background: var(--bg2);
-     
+    
       position: relative;
       z-index: 10;
     }
@@ -272,6 +275,7 @@
     .marquee-item span { color: var(--violet-l); margin-right: 0.5rem; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+ 
     #nav-dock {
       position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
@@ -297,7 +301,7 @@
       color: var(--white); background: rgba(108,71,255,0.28);
     }
 
-   
+    
     @media (max-width: 560px) {
       #nav-dock {
         padding: 0.55rem 0.6rem;
@@ -311,7 +315,7 @@
       .dock-a span { display: none; }
       .dock-a i { font-size: 1.1rem; }
 
-
+      
       .dock-a::before {
         content: attr(data-label);
         position: absolute;
@@ -332,7 +336,7 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         z-index: 10;
       }
-   
+    
       .dock-a::after {
         content: '';
         position: absolute;
@@ -346,20 +350,19 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
         z-index: 10;
       }
-      
+   
       .dock-a.active::before,
       .dock-a.active::after {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
     }
-
-  
+ 
     .section {
       padding: clamp(3.5rem, 8vh, 9rem) clamp(1.2rem, 5vw, 6rem);
       position: relative;
     }
-  
+     
     @media (max-width: 640px) {
       #creative { padding-bottom: 7rem; }
     }
@@ -390,7 +393,7 @@
 
     .about-img-inner {
       position: relative; display: inline-block;
-    
+      /* On mobile, stretch to fill column */
       width: 100%;
     }
     .about-img-inner img {
@@ -625,14 +628,14 @@
       display: flex; justify-content: space-between; align-items: center;
       font-family: var(--mono); font-size: 0.72rem; color: var(--slate-d);
       flex-wrap: wrap; gap: 0.5rem;
-      /* Clearance for fixed nav dock */
+      
       padding-bottom: 5.5rem;
     }
     @media (max-width: 480px) {
       .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
 
-    /* ── REVEAL ANIM ── */
+     
     .reveal {
       opacity: 0; transform: translateY(26px);
       transition: opacity 0.7s cubic-bezier(0.25,1,0.5,1), transform 0.7s cubic-bezier(0.25,1,0.5,1);
@@ -642,37 +645,38 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.32s; }
 
+ 
     @media (max-width: 640px) {
       
       .hero-title { margin-bottom: 1.5rem; }
 
-   
+    
       .stats-strip { gap: 1.8rem; }
 
+   
       .section-heading { margin-bottom: 0.75rem; }
 
-  
+ 
       .skill-group { margin-bottom: 2.2rem; }
       .pill { font-size: 0.79rem; padding: 0.45rem 0.9rem; }
 
-     
+ 
       .proj-bg-num { font-size: 5.5rem; right: 1rem; }
-
-
+ 
       .tl-item { gap: 1rem; margin-bottom: 2rem; }
       .exp-col-title { margin-bottom: 1.5rem; }
 
- 
+   
       .creative-top { gap: 2rem; }
       .media-box { aspect-ratio: 3/2; }
 
+ 
       .footer-brand { font-size: 1.35rem; }
     }
 
  
     html, body { max-width: 100%; overflow-x: hidden; }
-
-  
+ 
     #scene3d-wrap {
       position: fixed;
       top: 90px;
@@ -705,7 +709,7 @@
       #scene3d-label { font-size: 0.56rem; bottom: -1.3rem; }
     }
     @media (max-width: 560px) {
-     
+       
       #scene3d-wrap { width: 86px; height: 86px; top: 70px; right: 0.5rem; }
     }
   </style>
@@ -716,11 +720,12 @@
 <div id="cursor-dot"></div>
 <div id="scroll-bar"></div>
 
+ 
 <div id="scene3d-wrap">
   <div id="scene3d-label">SYS.RENDER</div>
 </div>
 
-
+ 
 <div id="hero-spacer">
   <section id="hero">
     <div id="hero-inner-scale">
@@ -1050,7 +1055,7 @@
 </footer>
 
 <script>
-// ── LERP CURSOR
+ 
 const ring = document.getElementById('cursor-ring');
 const dot  = document.getElementById('cursor-dot');
 let tx=0,ty=0,rx=0,ry=0;
@@ -1062,14 +1067,13 @@ document.addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
   requestAnimationFrame(loop);
 })();
 
-// ── SCROLL PROGRESS
+ 
 const bar = document.getElementById('scroll-bar');
-window.addEventListener('scroll', () => {
+function updateScrollBar() {
   const p = window.scrollY / (document.body.scrollHeight - innerHeight);
   bar.style.width = (p*100)+'%';
-}, {passive:true});
-
-// ── PINNED HERO: pin-then-release scroll choreography ──
+}
+ 
 const heroSpacer = document.getElementById('hero-spacer');
 const heroSection = document.getElementById('hero');
 const heroScaleWrap = document.getElementById('hero-inner-scale');
@@ -1079,7 +1083,7 @@ const orb2 = document.getElementById('layer-orb2');
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-let mouseCX = 0, mouseCY = 0; // mouse-driven offsets, reused below
+let mouseCX = 0, mouseCY = 0;  
 
 function updateHeroPin() {
   if (reduceMotion || !heroSpacer || !heroSection) return;
@@ -1087,24 +1091,25 @@ function updateHeroPin() {
   const rect = heroSpacer.getBoundingClientRect();
   const spacerHeight = rect.height;
   const viewportH = window.innerHeight;
-
+   
   const releaseDistance = spacerHeight - viewportH;
 
+   
   const scrolled = Math.min(Math.max(-rect.top, 0), releaseDistance);
-  const progress = releaseDistance > 0 ? scrolled / releaseDistance : 0; 
+  const progress = releaseDistance > 0 ? scrolled / releaseDistance : 0;  
 
   if (rect.top > 0) {
-
+ 
     heroSection.style.transform = '';
     heroSection.style.opacity = '1';
   } else if (scrolled < releaseDistance) {
-
-    const scale = 1 + progress * 0.12;     
-    const opacity = 1 - progress * 1.0;     
+   
+    const scale = 1 + progress * 0.12;       
+    const opacity = 1 - progress * 1.0;      
     heroScaleWrap.style.transform = `scale(${scale.toFixed(4)})`;
     heroScaleWrap.style.opacity = Math.max(opacity, 0).toFixed(3);
   } else {
-  
+ 
     heroScaleWrap.style.transform = 'scale(1.12)';
     heroScaleWrap.style.opacity = '0';
   }
@@ -1116,10 +1121,23 @@ function updateHeroPin() {
   orb2.style.transform  = `translateY(${driftY * 0.15}px) translate(${-mouseCX*0.4}px, ${-mouseCY*0.4}px)`;
 }
 
-window.addEventListener('scroll', updateHeroPin, { passive: true });
+let heroPinTicking = false;
+function requestHeroPinUpdate() {
+  if (heroPinTicking) return;
+  heroPinTicking = true;
+  requestAnimationFrame(() => {
+    updateHeroPin();
+    updateScrollBar();
+    heroPinTicking = false;
+  });
+}
+
+window.addEventListener('scroll', requestHeroPinUpdate, { passive: true });
 window.addEventListener('resize', updateHeroPin);
 updateHeroPin();
+updateScrollBar();
 
+ 
 if (heroSection) {
   heroSection.addEventListener('mousemove', e => {
     mouseCX = (e.clientX/innerWidth  - 0.5) * 18;
@@ -1127,19 +1145,19 @@ if (heroSection) {
   });
 }
 
-
+ 
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin:'0px 0px -40px 0px' });
 revealEls.forEach(el => io.observe(el));
 
-
+ 
 document.querySelectorAll('#hero .reveal').forEach(el => {
   setTimeout(() => el.classList.add('visible'), 50);
 });
 
-// ── ACTIVE NAV
+ 
 const sections = document.querySelectorAll('section[id], footer[id]');
 const dockLinks = document.querySelectorAll('.dock-a');
 const navObs = new IntersectionObserver(entries => {
@@ -1153,6 +1171,7 @@ const navObs = new IntersectionObserver(entries => {
 }, { threshold: 0.4 });
 sections.forEach(s => navObs.observe(s));
 
+ 
 document.querySelectorAll('.proj-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -1162,8 +1181,7 @@ document.querySelectorAll('.proj-card').forEach(card => {
   });
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
-
-
+ 
 document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
     ring.style.width  = '56px';
@@ -1178,14 +1196,14 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
 });
 </script>
 
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function() {
   const wrap = document.getElementById('scene3d-wrap');
   const label = document.getElementById('scene3d-label');
   if (!wrap || typeof THREE === 'undefined') return;
-
-
+ 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   wrap.insertBefore(renderer.domElement, label);
@@ -1201,7 +1219,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   camera.position.set(0, 0, 6);
 
-  // Lighting
+ 
   const ambient = new THREE.AmbientLight(0xffffff, 0.55);
   scene.add(ambient);
   const point1 = new THREE.PointLight(0x6c47ff, 2.2, 20);
@@ -1211,6 +1229,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   point2.position.set(-3, -2, 3);
   scene.add(point2);
 
+ 
   function makeSymbolSprite(text, color) {
     const c = document.createElement('canvas');
     c.width = 128; c.height = 128;
@@ -1248,13 +1267,13 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   });
   scene.add(group);
 
-
+   
   const coreGeo = new THREE.IcosahedronGeometry(1.15, 0);
   const coreMat = new THREE.MeshBasicMaterial({ color: 0x6c47ff, wireframe: true, transparent: true, opacity: 0.22 });
   const core = new THREE.Mesh(coreGeo, coreMat);
   scene.add(core);
 
-
+   
   const layouts = {
     hero: [
       [1.6, 0.6, 0], [-1.5, 0.8, -0.5], [0.3, 1.6, 0.4],
@@ -1263,11 +1282,11 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     about: [
       [0, 1.8, 0], [1.4, 0.9, 0.6], [1.4, -0.9, -0.6],
       [0, -1.8, 0], [-1.4, -0.9, 0.6], [-1.4, 0.9, -0.6]
-    ],
+    ],  
     skills: [
       [-1.5, 1.5, 0], [1.5, 1.5, 0], [-1.5, -1.5, 0],
       [1.5, -1.5, 0], [0, 0, 1.6], [0, 0, -1.6]
-    ],
+    ], 
     projects: [
       [-1.8, 0, 0], [-0.9, 0, 0.9], [0, 0, 1.2],
       [0.9, 0, 0.9], [1.8, 0, 0], [0, 0, -1.2]
@@ -1275,14 +1294,14 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     experience: [
       [0, 1.9, 0], [0, 1.1, 0], [0, 0.3, 0],
       [0, -0.5, 0], [0, -1.3, 0], [0, -2.1, 0]
-    ], 
+    ],  
     creative: [
       [1.3, 1.0, 0.8], [-1.3, 1.0, -0.8], [1.3, -1.0, -0.8],
       [-1.3, -1.0, 0.8], [0, 1.7, -0.4], [0, -1.7, 0.4]
-    ], 
+    ],  
     footer: [
       [0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]
-    ]
+    ]  
   };
 
   const labels = {
@@ -1301,6 +1320,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     if (label) label.textContent = labels[id] || 'SYS.RENDER';
   }
 
+ 
   const watchIds = ['hero','about','skills','projects','experience','creative','footer'];
   watchIds.forEach(id => {
     const el = document.getElementById(id);
@@ -1311,7 +1331,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     obs.observe(el);
   });
 
-
+  
   const visIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) wrap.classList.add('visible');
@@ -1320,7 +1340,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   const heroEl = document.getElementById('hero');
   if (heroEl) visIO.observe(heroEl);
 
-
+ 
   let t = 0;
   function animate() {
     requestAnimationFrame(animate);
@@ -1331,7 +1351,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
       s.position.x += (target[0] - s.position.x) * 0.06;
       s.position.y += (target[1] - s.position.y) * 0.06;
       s.position.z += (target[2] - s.position.z) * 0.06;
-      // gentle bob
+      
       s.position.y += Math.sin(t * 1.5 + i) * 0.003;
     });
 
@@ -1348,8 +1368,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   window.addEventListener('resize', resizeRenderer);
 })();
 </script>
-
-
+ 
 <script>
 (function() {
   const wrap = document.getElementById('hero-3d');
@@ -1371,8 +1390,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
-
-  // Lighting
+ 
   scene.add(new THREE.AmbientLight(0xffffff, 0.5));
   const pLight1 = new THREE.PointLight(0x6c47ff, 2.4, 30);
   pLight1.position.set(6, 4, 6);
@@ -1381,6 +1399,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   pLight2.position.set(-6, -3, 5);
   scene.add(pLight2);
 
+ 
   function makeSymbolSprite(text, color, fontSize) {
     const c = document.createElement('canvas');
     c.width = 160; c.height = 160;
@@ -1417,7 +1436,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     const s = makeSymbolSprite(def.text, def.color, def.size);
     const scale = 0.85 + Math.random() * 0.55;
     s.scale.set(scale, scale, scale);
-
+    
     s.position.set(
       (Math.random() - 0.5) * 14,
       (Math.random() - 0.5) * 9,
@@ -1432,15 +1451,15 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   });
   scene.add(group);
 
-  
+   
   const coreGeo = new THREE.IcosahedronGeometry(4.2, 1);
   const coreMat = new THREE.MeshBasicMaterial({ color: 0x6c47ff, wireframe: true, transparent: true, opacity: 0.06 });
   const core = new THREE.Mesh(coreGeo, coreMat);
   core.position.z = -3;
   scene.add(core);
 
-
-  let scrollFrac = 0;
+ 
+  let scrollFrac = 0; 
   let mouseX = 0, mouseY = 0;
 
   function updateScrollFrac() {
@@ -1463,16 +1482,16 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
     t += 0.012;
 
     symbols.forEach(s => {
-      
+ 
       s.position.y = s.userData.baseY + Math.sin(t * s.userData.driftSpeed + s.userData.driftPhase) * 0.4;
       s.material.rotation += s.userData.rotSpeed;
     });
-
+ 
     group.position.y = scrollFrac * 4.5;
     group.position.z = scrollFrac * -3;
     wrap.style.opacity = Math.max(1 - scrollFrac * 1.4, 0);
 
-
+ 
     group.rotation.y += ((mouseX * 0.4) - group.rotation.y) * 0.02;
     group.rotation.x += ((-mouseY * 0.25) - group.rotation.x) * 0.02;
 
@@ -1486,7 +1505,7 @@ document.querySelectorAll('a,button,.pill,.proj-card').forEach(el => {
   animate();
   window.addEventListener('resize', resizeRenderer);
 
-
+  
   requestAnimationFrame(() => wrap.classList.add('visible'));
 })();
 </script>
