@@ -4,7 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samjith Krishnan — Full-Stack Engineer</title>
+  <title>Samjith Krishnan | Python Django & React Developer</title>
+  <meta name="description" content="Samjith Krishnan is a Python Django and React Developer specializing in Django REST Framework, REST APIs, PostgreSQL, React, Docker and scalable full-stack applications." />
+  <meta name="keywords" content="Samjith Krishnan, Python Developer, Django Developer, Django REST Framework, DRF Developer, React Developer, Full Stack Developer, PostgreSQL, Docker, GCP" />
+  <meta name="author" content="Samjith Krishnan" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://samjithkrishnan.in/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Samjith Krishnan | Python Django & React Developer" />
+  <meta property="og:description" content="Portfolio of Samjith Krishnan, a Python Django and React Developer building scalable APIs and full-stack web applications." />
+  <meta property="og:url" content="https://samjithkrishnan.in/" />
+  <meta property="og:image" content="https://samjithkrishnan.in/WhatsApp%20Image%202024-06-08%20at%2010.18.52_0d9a35c3.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Samjith Krishnan | Python Django & React Developer" />
+  <meta name="twitter:description" content="Python Django and React Developer portfolio — APIs, full-stack applications, PostgreSQL, Docker and Google Cloud." />
+  <meta name="twitter:image" content="https://samjithkrishnan.in/WhatsApp%20Image%202024-06-08%20at%2010.18.52_0d9a35c3.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Samjith Krishnan",
+    "url": "https://samjithkrishnan.in/",
+    "image": "https://samjithkrishnan.in/WhatsApp%20Image%202024-06-08%20at%2010.18.52_0d9a35c3.jpg",
+    "jobTitle": "Python Django & React Developer",
+    "description": "Python Django and React Developer specializing in Django REST Framework, REST APIs, PostgreSQL, Docker and full-stack web applications.",
+    "sameAs": [
+      "https://github.com/samjith-krishnan",
+      "https://linkedin.com/in/samjith-krishnan"
+    ],
+    "knowsAbout": ["Python", "Django", "Django REST Framework", "React", "PostgreSQL", "Docker", "Google Cloud", "REST APIs"]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,7 +92,7 @@
       display: block;
     }
 
-    /* ── PRELOADER CORE STYLES ── */
+  
     #loader-wrapper {
       position: fixed;
       inset: 0;
@@ -1037,6 +1068,36 @@
       margin-bottom: 1.8rem;
     }
 
+    .proj-links {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      padding: 0.48rem 0.78rem;
+      border: 1px solid rgba(108, 71, 255, 0.28);
+      color: var(--violet-l);
+      background: rgba(108, 71, 255, 0.07);
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .proj-link:hover {
+      color: var(--white);
+      border-color: var(--violet-l);
+      background: rgba(108, 71, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
     .proj-tags {
       display: flex;
       gap: 0.5rem;
@@ -1607,7 +1668,7 @@
       <div class="about-grid">
         <div class="reveal">
           <div class="about-img-inner">
-            <img src="./WhatsApp Image 2024-06-08 at 10.18.52_0d9a35c3.jpg" alt="Samjith Krishnan" />
+            <img src="./WhatsApp Image 2024-06-08 at 10.18.52_0d9a35c3.jpg" alt="Samjith Krishnan - Python Django and React Developer" />
             <div class="img-badge">DEV_ID // SK-2026<br />LOC // Kannur, Kerala, IN</div>
           </div>
         </div>
@@ -1689,85 +1750,390 @@
     </section>
 
     <section class="section" id="projects">
-      <div style="max-width:1100px;margin:0 auto 3rem;">
-        <div class="section-label reveal">Selected Work</div>
-        <h2 class="section-heading reveal reveal-d1">Production Deployments</h2>
+
+  <!-- =========================
+       PRODUCTION DEPLOYMENTS
+  ========================== -->
+
+  <div style="max-width:1100px;margin:0 auto 3rem;">
+    <div class="section-label reveal">Selected Work</div>
+    <h2 class="section-heading reveal reveal-d1">
+      Production Deployments
+    </h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 01 - HIRE FLOW AI -->
+    <div class="proj-card reveal">
+
+      <div class="proj-num">
+        <span>APP_01</span>
+        <span class="proj-status">● ACTIVE</span>
       </div>
-      <div class="projects-grid">
 
-        <div class="proj-card reveal">
-          <div class="proj-num"><span>APP_01</span><span class="proj-status">● ACTIVE</span></div>
-          <h3 class="proj-title">Hire Flow AI</h3>
-          <p class="proj-desc">A multi-tenant AI-powered Applicant Tracking System (ATS) built with Django REST
-            Framework and React. Companies can create job openings, share application links, automatically rank
-            candidates using custom AI algorithms, manage interviews and schedule virtual interview</p>
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">Python DRF</span>
-            <span class="proj-tag">PostgreSQL</span>
-            <span class="proj-tag">Redis</span>
-            <span class="proj-tag">Celery</span>
+      <h3 class="proj-title">Hire Flow AI</h3>
 
-          </div>
-          <div class="proj-bg-num">01</div>
-        </div>
+      <p class="proj-desc">
+        A multi-tenant AI-powered Applicant Tracking System built with Django
+        REST Framework and React. Companies can create job openings, share
+        application links, rank candidates using custom AI-based scoring,
+        manage applications, and schedule virtual interviews.
+      </p>
 
-        <div class="proj-card reveal reveal-d1">
-          <div class="proj-num"><span>APP_02</span><span class="proj-status">● ACTIVE</span></div>
-          <h3 class="proj-title">Multi tenent Warehouse Management</h3>
-          <p class="proj-desc">Built RESTful APIs for inventory management, sales, purchases, warehouse operations, user
-            management, and reporting.Implemented inventory, sales, purchases, warehouse management, and role-based
-            access control
-            modules.
-          </p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python DRF</span>
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">PostgreSQL</span>
-            <span class="proj-tag">Redis</span>
-            <span class="proj-tag">Celery</span>
+      <div class="proj-tags">
+        <span class="proj-tag">React</span>
+        <span class="proj-tag">Python DRF</span>
+        <span class="proj-tag">PostgreSQL</span>
+        <span class="proj-tag">Redis</span>
+        <span class="proj-tag">Celery</span>
+      </div>
 
-          </div>
-          <div class="proj-bg-num">02</div>
-        </div>
+      <div class="proj-links">
 
-        <div class="proj-card reveal">
-          <div class="proj-num"><span>APP_03</span><span class="proj-status">● DEPLOYED</span></div>
-          <h3 class="proj-title">Smart Ration Management</h3>
-          <p class="proj-desc">SmartRation is a digital ecosystem designed to modernize and streamline the public
-            distribution system (PDS). The platform automates the allocation, tracking, and purchasing of monthly
-            allocated ration goods based on user demographics and household quotas. By transitioning from
-            traditional paper ledger systems to a real-time digital dashboard, it eliminates human error, prevents quota
-            leaks, and guarantees fair distribution.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python DRF</span>
-            <span class="proj-tag">React.js</span>
-            <span class="proj-tag">MySQL</span>
-            <span class="proj-tag">GCP</span>
-          </div>
-          <div class="proj-bg-num">03</div>
-        </div>
-
-        <div class="proj-card reveal reveal-d1">
-          <div class="proj-num"><span>APP_04</span><span class="proj-status">● DEPLOYED</span></div>
-          <h3 class="proj-title">Hospital Management</h3>
-          <p class="proj-desc">designed to simplify the interaction between patients and doctors. The platform removes
-            medical communication barriers by allowing patients to book consultations seamlessly online, while providing
-            doctors with a dedicated dashboard to manage their daily schedules, view accurate patient medical histories,
-            and issue digital prescriptions instantly.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">Python DRF</span>
-            <span class="proj-tag">GCP</span>
-            <span class="proj-tag">MySQL</span>
-
-
-          </div>
-          <div class="proj-bg-num">04</div>
-        </div>
+       
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
 
       </div>
-    </section>
+
+      <div class="proj-bg-num">01</div>
+
+    </div>
+
+
+    <!-- PROJECT 02 - INVENTRA -->
+    <div class="proj-card reveal reveal-d1">
+
+      <div class="proj-num">
+        <span>APP_02</span>
+        <span class="proj-status">● ACTIVE</span>
+      </div>
+
+      <h3 class="proj-title">
+        Multi-tenant Warehouse Management
+      </h3>
+
+      <p class="proj-desc">
+        A multi-tenant warehouse management platform with REST APIs for
+        inventory, sales, purchases, warehouse operations, reporting, user
+        management, and role-based access control.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">Python DRF</span>
+        <span class="proj-tag">React</span>
+        <span class="proj-tag">MySQL</span>
+        <span class="proj-tag">Redis</span>
+        <span class="proj-tag">Celery</span>
+      </div>
+
+      <div class="proj-links">
+
+     
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">02</div>
+
+    </div>
+
+
+    <!-- PROJECT 03 - SMART RATION -->
+    <div class="proj-card reveal">
+
+      <div class="proj-num">
+        <span>APP_03</span>
+        <span class="proj-status">● DEPLOYED</span>
+      </div>
+
+      <h3 class="proj-title">
+        Smart Ration Management
+      </h3>
+
+      <p class="proj-desc">
+        SmartRation is a digital platform designed to modernize the public
+        distribution system by automating monthly ration allocation,
+        tracking, purchasing, and household quota management through a
+        real-time dashboard.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">Python DRF</span>
+        <span class="proj-tag">React.js</span>
+        <span class="proj-tag">MySQL</span>
+        <span class="proj-tag">GCP</span>
+      </div>
+
+      <div class="proj-links">
+
+      
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">03</div>
+
+    </div>
+
+
+    <!-- PROJECT 04 - HOSPITAL MANAGEMENT -->
+    <div class="proj-card reveal reveal-d1">
+
+      <div class="proj-num">
+        <span>APP_04</span>
+        <span class="proj-status">● DEPLOYED</span>
+      </div>
+
+      <h3 class="proj-title">
+        Hospital Management
+      </h3>
+
+      <p class="proj-desc">
+        A hospital management platform that connects patients and doctors
+        through online consultation booking, doctor dashboards, patient
+        history management, scheduling, and digital prescriptions.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">React</span>
+        <span class="proj-tag">Python DRF</span>
+        <span class="proj-tag">GCP</span>
+        <span class="proj-tag">MySQL</span>
+      </div>
+
+      <div class="proj-links">
+
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">04</div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <div style="max-width:1100px;margin:6rem auto 3rem;">
+
+    <div class="section-label reveal">
+      Frontend Work
+    </div>
+
+    <h2 class="section-heading reveal reveal-d1">
+      Frontend Deployments
+    </h2>
+
+  </div>
+
+
+  <div class="projects-grid">
+
+    <!-- FRONTEND PROJECT 01 - INVENTRA -->
+    <div class="proj-card reveal">
+
+      <div class="proj-num">
+        <span>UI_01</span>
+        <span class="proj-status">● LIVE</span>
+      </div>
+
+      <h3 class="proj-title">
+        Inventra
+      </h3>
+
+      <p class="proj-desc">
+        A modern React-based frontend for an inventory and warehouse
+        management platform. The interface includes interactive dashboards,
+        product management, sales, purchases, warehouse operations,
+        employee management, and role-based workflows.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">React</span>
+        <span class="proj-tag">Vite</span>
+        <span class="proj-tag">JavaScript</span>
+        <span class="proj-tag">Desktop UI</span>
+      </div>
+
+      <div class="proj-links">
+
+        <a
+          class="proj-link"
+          href="https://inventra.samjithkrishnan.in"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fas fa-arrow-up-right-from-square"></i>
+          Live Frontend
+        </a>
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">01</div>
+
+    </div>
+
+
+
+    <div class="proj-card reveal reveal-d1">
+
+      <div class="proj-num">
+        <span>UI_02</span>
+        <span class="proj-status">● LIVE</span>
+      </div>
+
+      <h3 class="proj-title">
+        Bearnbee
+      </h3>
+
+      <p class="proj-desc">
+        A modern frontend experience for a honey brand, designed with a
+        product-focused interface, responsive layouts, engaging product
+        presentation, brand storytelling, and a clean customer shopping
+        experience.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">HTML</span>
+        <span class="proj-tag">JavaScript</span>
+        <span class="proj-tag">CSS</span>
+        <span class="proj-tag">Responsive Design</span>
+      </div>
+
+      <div class="proj-links">
+
+   
+        <a
+          class="proj-link"
+          href="#"
+        >
+          <i class="fas fa-arrow-up-right-from-square"></i>
+          Live Frontend
+        </a>
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">02</div>
+
+    </div>
+
+
+  
+    <div class="proj-card reveal">
+
+      <div class="proj-num">
+        <span>UI_03</span>
+        <span class="proj-status">● LIVE</span>
+      </div>
+
+      <h3 class="proj-title">
+        Hire Flow AI
+      </h3>
+
+      <p class="proj-desc">
+        A responsive recruitment platform frontend built with React,
+        providing intuitive dashboards and interfaces for job management,
+        candidate applications, recruitment workflows, candidate
+        evaluation, and interview management.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">React</span>
+        <span class="proj-tag">Vite</span>
+        <span class="proj-tag">JavaScript</span>
+        <span class="proj-tag">REST API</span>
+        <span class="proj-tag">Dashboard UI</span>
+      </div>
+
+      <div class="proj-links">
+
+        <a
+          class="proj-link"
+          href="https://hireflow.samjithkrishnan.in"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fas fa-arrow-up-right-from-square"></i>
+          Live Frontend
+        </a>
+
+        <a
+          class="proj-link"
+          href="https://github.com/samjith-krishnan"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+
+      </div>
+
+      <div class="proj-bg-num">03</div>
+
+    </div>
+
+  </div>
+
+</section>
 
     <section class="section" id="experience">
       <div style="max-width:1100px;margin:0 auto;">
