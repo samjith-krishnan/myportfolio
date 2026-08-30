@@ -590,3 +590,63 @@ body {
     flex-grow: 1;
     background: linear-gradient(90deg, rgba(254, 98, 68, 0.3), transparent);
 }
+
+
+/* Futuristic Quotes Section */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.quote-card {
+  background: var(--bg3);
+  border: 1px solid rgba(108, 71, 255, 0.2);
+  border-radius: 4px;
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.quote-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--violet-l), var(--amber));
+}
+
+.quote-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 71, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(108, 71, 255, 0.15);
+}
+
+.quote-text {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.quote-author {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  text-transform: uppercase;
+}
+
+.quote-source {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--slate);
+  margin-top: 0.2rem;
+}
